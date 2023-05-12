@@ -1,5 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import LayOut from '../components/layout';
+import PokeList from '../page/PokeList/PokeList';
 
 /**
  * 목표 1
@@ -31,7 +32,9 @@ const router = createBrowserRouter([
     {
         path: '/',
         element: <LayOut />,
-        children: [{ path: '/document' }],
+        children: [{ path: '/document',
+        element: <PokeList/>
+    }],
     },
 ]);
 
