@@ -5,30 +5,32 @@ import { Outlet } from 'react-router-dom';
 import { styled } from 'styled-components';
 
 const LayOut = () => {
-    return (
-        <React.Fragment>
-            <Background/>
-            <Container>
-            <Header />
-            <Outlet/>
-            <Footer />
-            </Container>
-        </React.Fragment>
-    );
+  return (
+    <React.Fragment>
+      <Header />
+      <Background />
+      <Container>
+        <Outlet />
+        <Footer />
+      </Container>
+    </React.Fragment>
+  );
 };
 
 export default LayOut;
 
 const Background = styled.div`
-    z-index: 0;
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    object-fit: cover;
-    background-image: url('/assets/background/poke-background.jpg');
-    opacity: 0.3;
-`
+  z-index: 0;
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background: url('/assets/img/poke-background.jpg');
+  object-position: center;
+  background-size: cover;
+  opacity: 0.3;
+`;
 const Container = styled.div`
-    z-index: 100;
-    position: relative;
-`
+  z-index: 100;
+  position: relative;
+  padding-top: 120px;
+`;
