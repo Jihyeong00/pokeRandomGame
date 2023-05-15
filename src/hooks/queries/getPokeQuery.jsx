@@ -1,4 +1,4 @@
-import { Query, useInfiniteQuery, useQuery } from 'react-query';
+import { useInfiniteQuery, useQuery } from 'react-query';
 import { QUERY_KEY } from '../../consts/querykey';
 import { queryConfig } from './@config';
 import PokeApi from '../../api/poke_api/pokeApi';

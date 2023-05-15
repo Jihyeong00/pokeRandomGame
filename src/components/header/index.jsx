@@ -8,6 +8,11 @@ const Header = () => {
     navigate('/document');
     console.log('버튼눌림');
   };
+  const onSubmit = (e) => {
+    e.preventDefault();
+    console.log(e.target.text.value);
+    navigate(`/keyword/?keyword=${e.target.text.value}`);
+  };
   return (
     <S.HEAD>
       <nav>
@@ -35,11 +40,16 @@ const Header = () => {
                   게임
                 </Button>
               </div>
-              <form>
+              <form onSubmit={onSubmit}>
                 <div className="bg-white rounded overflow-hidden">
-                  <input type="text" id="searchPoke" className="ml-2 border-none outline-none" />
+                  <input
+                    type="text"
+                    name="text"
+                    id="searchPoke"
+                    className="ml-2 border-none outline-none"
+                  />
                   <Button b_round={0} className="bg-slate-400" m_right={0}>
-                    포켓몬 검색
+                    도감번호 검색
                   </Button>
                 </div>
               </form>

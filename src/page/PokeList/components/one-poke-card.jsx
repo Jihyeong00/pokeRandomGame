@@ -1,9 +1,15 @@
 import { styled } from 'styled-components';
 import { useKeyWordMorePokeInfo, usePokeInfoToKeyWord } from '../../../hooks/queries/getPokeQuery';
+import { useNavigate } from 'react-router-dom';
 
-const PokeCard = ({ poke }) => {
+const OnePokeCard = ({ parentsSuccess, poke }) => {
   const res = usePokeInfoToKeyWord(poke.name);
   const res2 = useKeyWordMorePokeInfo(poke.name);
+  const navigate = useNavigate();
+
+  const onClick = () => {
+    navigate(`/keyword/?keyword=${poke.name}`);
+  };
   if (!res.isSuccess) return;
 
   const data = res.data.data;
@@ -12,34 +18,42 @@ const PokeCard = ({ poke }) => {
   if (!res2.isSuccess) return;
 
   const data2 = res2.data.data;
-  const genera = data2.genera.filter((data) => data.language.name === 'ko')[0].genus;
+  const genera = data2.genera.filter((data) => data.language.name === 'ko');
   const korName = data2.names.filter((data) => data.language.name === 'ko')[0].name;
 
-  return (
-    <li className="flex justify-center items-center flex-col relative">
-      <Number>No.{data2.id}</Number>
-      <S.GeneraDiv className="rounded-lg font-bold text-xs p-1" type={types[0].type.name}>
-        {genera}
-      </S.GeneraDiv>
-      <S.Container className="flex justify-center items-center flex-col">
-        <div>
-          <img src={sprites.front_default} alt="No_image" width={135} />
-        </div>
-        <div className="flex gap-1">
-          {types.map((type) => (
-            <S.TypeBox type={type}>{type.type.name}</S.TypeBox>
-          ))}
-        </div>
-        <div className="capitalize font-bold font-sans">
-          {korName !== undefined ? korName : name}
-        </div>
-      </S.Container>
-      <S.BackWhite />
-    </li>
-  );
+  if (!parentsSuccess && res2.isSuccess) {
+    return (
+      <li className="flex justify-center items-center flex-col relative">
+        <Number>No.{data2.id}</Number>
+        {genera !== undefined && (
+          <S.GeneraDiv className="rounded-lg font-bold text-xs p-1" type={types[0].type.name}>
+            {genera[0].genus}
+          </S.GeneraDiv>
+        )}
+        <S.Container
+          onClick={onClick}
+          style={{ cursor: 'pointer' }}
+          className="flex justify-center items-center flex-col"
+        >
+          <div>
+            <img src={sprites.front_default} alt="No_image" width={135} />
+          </div>
+          <div className="flex gap-1">
+            {types.map((type) => (
+              <S.TypeBox type={type}>{type.type.name}</S.TypeBox>
+            ))}
+          </div>
+          <div className="capitalize font-bold font-sans">
+            {korName !== undefined ? korName : name}
+          </div>
+        </S.Container>
+        <S.BackWhite />
+      </li>
+    );
+  }
 };
 
-export default PokeCard;
+export default OnePokeCard;
 
 const GeneraDiv = styled.div`
   color: ${({ type, theme }) => theme.typeColors[type].color};

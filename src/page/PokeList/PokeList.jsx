@@ -1,8 +1,7 @@
-import Loading from '../../components/Loading/Loading';
 import { usePokeInfoInfinity } from '../../hooks/queries/getPokeQuery';
-import PokeCard from './components/Pokecard';
 import { useState, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
+import OnePokeCard from './components/one-poke-card';
 
 const PokeList = () => {
   const [pokeList, setPokeList] = useState([]);
@@ -28,15 +27,18 @@ const PokeList = () => {
 
   return (
     <>
-      {res.isFetching && <Loading />}
-      <div className="p-2 pt-10">
+      <div className="p-2 pt-10 ">
         <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  2xl:grid-cols-5 gap-3">
           {pokeList.map((poke) => (
-            <PokeCard key={Math.floor(Math.random() * 1000000)} poke={poke} />
+            <OnePokeCard
+              parentsSuccess={res.isLoading}
+              key={Math.floor(Math.random() * 1000000)}
+              poke={poke}
+            />
           ))}
+          <div ref={ref}></div>
         </ul>
       </div>
-      <div ref={ref}></div>
     </>
   );
 };
