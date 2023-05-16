@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import LayOut from '../components/layout';
 import PokeList from '../page/PokeList/PokeList';
 import SearchPoke from '../page/SearchPoke/SearchPoke';
+import ErrorPage from '../page/Error/ErrorPage';
 
 /**
  * 목표 1
@@ -30,14 +31,16 @@ import SearchPoke from '../page/SearchPoke/SearchPoke';
  */
 
 const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <LayOut />,
-    children: [
-      { path: '/document', element: <PokeList /> },
-      { path: '/keyword', element: <SearchPoke /> },
-    ],
-  },
+    {
+        path: '/',
+        element: <LayOut />,
+        children: [
+            { path: '/document', element: <PokeList /> },
+            { path: '/keyword', element: <SearchPoke /> },
+            { path: '/sign', element: <SignPage /> },
+        ],
+        errorElement: <ErrorPage />,
+    },
 ]);
 
 export default router;
