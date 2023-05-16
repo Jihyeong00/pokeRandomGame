@@ -11,8 +11,8 @@ const Header = () => {
   };
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(e.target.text.value);
     navigate(`/keyword/?keyword=${e.target.text.value}`);
+    e.target.text.value = '';
   };
 
   const [isLogin, setIsLogin] = useState(false);
@@ -20,7 +20,12 @@ const Header = () => {
     <S.HEAD>
       <nav>
         <div className="flex">
-          <div className="p-2 pl-10">
+          <div
+            onClick={() => {
+              navigate('/');
+            }}
+            className="p-2 pl-10"
+          >
             <img
               src="/assets/img/Pokémon_(2023)_Official_Japanese_Logo.png"
               alt="포켓몬스터_로고"
@@ -31,10 +36,15 @@ const Header = () => {
             <div className="flex flex-row-reverse ">
               {!isLogin ? (
                 <>
-                  <Button b_round={2}>회원가입</Button>
-                  <Button b_round={2} m_right={10}>
+                  <Button
+                    onClick={() => {
+                      navigate('/sign');
+                    }}
+                    b_round={2}
+                  >
                     로그인
                   </Button>
+                  <NotLogin>현재 로그인이 되지 않은 상태입니다.</NotLogin>
                 </>
               ) : (
                 <div>님 환영합니다</div>
@@ -42,6 +52,9 @@ const Header = () => {
             </div>
             <div className="flex justify-between pt-1">
               <div>
+                <Button b_round={2} m_right={10} className="bg-slate-400 " onClick={moveDocument}>
+                  자유게시판
+                </Button>
                 <Button b_round={2} m_right={10} className="bg-slate-400 " onClick={moveDocument}>
                   도감
                 </Button>
@@ -80,6 +93,14 @@ const HEAD = styled.header`
   z-index: 200;
 `;
 
+const NotLogin = styled.div`
+  line-height: 34px;
+  margin-right: 10px;
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+`;
+
 const S = {
   HEAD,
+  NotLogin,
 };

@@ -4,13 +4,14 @@ import { useKeyWordMorePokeInfo, usePokeInfoToKeyWord } from '../../hooks/querie
 import { MdArrowBackIosNew, MdArrowForwardIos } from 'react-icons/md';
 
 const SearchPoke = () => {
+  window.scrollTo(0, 0);
   const [searchParams, setSearchParmas] = useSearchParams();
   const keyword = searchParams.get('keyword');
   const res1 = useKeyWordMorePokeInfo(keyword);
   const res2 = usePokeInfoToKeyWord(keyword);
 
-  if (!res1.isSuccess) return <div>에러페이지</div>;
-  if (!res2.isSuccess) return <div>에러페이지</div>;
+  if (res1.isLoading || res2.isLoading) return <div>로딩중</div>;
+  if (res1.isError || res2.isError) return <div>에러페이지</div>;
   if (res2.isSuccess) {
     const data1 = res1.data.data;
     // 한글

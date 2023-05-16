@@ -20,7 +20,7 @@ const SignPage = () => {
             <img
               src="/assets/img/Pokémon_(2023)_Official_Japanese_Logo.png"
               alt="포켓몬스터_로고"
-              width={200}
+              width={350}
             />
           </div>
           <S.ChangeForm>{!isFormLogin ? <SignIn /> : <SignUp />}</S.ChangeForm>
