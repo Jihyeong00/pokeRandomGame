@@ -3,6 +3,9 @@ import LayOut from '../components/layout';
 import PokeList from '../page/PokeList/PokeList';
 import SearchPoke from '../page/SearchPoke/SearchPoke';
 import ErrorPage from '../page/Error/ErrorPage';
+import SignPage from '../page/User';
+import SignIn from '../page/User/SignIn/SignIn';
+import SignUp from '../page/User/SignUp/SignUp';
 
 /**
  * 목표 1
@@ -31,16 +34,19 @@ import ErrorPage from '../page/Error/ErrorPage';
  */
 
 const router = createBrowserRouter([
-    {
-        path: '/',
-        element: <LayOut />,
-        children: [
-            { path: '/document', element: <PokeList /> },
-            { path: '/keyword', element: <SearchPoke /> },
-            { path: '/sign', element: <SignPage /> },
-        ],
-        errorElement: <ErrorPage />,
-    },
+  {
+    path: '/',
+    element: <LayOut />,
+    children: [
+      { path: '/document', element: <PokeList /> },
+      { path: '/keyword', element: <SearchPoke /> },
+      {
+        path: '/sign',
+        element: <SignPage />,
+      },
+    ],
+    errorElement: <ErrorPage />,
+  },
 ]);
 
 export default router;

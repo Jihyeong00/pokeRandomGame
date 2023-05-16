@@ -34,5 +34,5 @@ const Background = styled.div`
 const Container = styled.div`
   z-index: 100;
   position: relative;
-  padding-top: 120px;
+  padding-top: 100px;
 `;

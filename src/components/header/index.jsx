@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 import Button from '../button/button';
+import { useState } from 'react';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -13,11 +14,13 @@ const Header = () => {
     console.log(e.target.text.value);
     navigate(`/keyword/?keyword=${e.target.text.value}`);
   };
+
+  const [isLogin, setIsLogin] = useState(false);
   return (
     <S.HEAD>
       <nav>
         <div className="flex">
-          <div className="p-2">
+          <div className="p-2 pl-10">
             <img
               src="/assets/img/Pokémon_(2023)_Official_Japanese_Logo.png"
               alt="포켓몬스터_로고"
@@ -26,10 +29,16 @@ const Header = () => {
           </div>
           <div className="w-full flex flex-col p-3 mr-7">
             <div className="flex flex-row-reverse ">
-              <Button b_round={2}>회원가입</Button>
-              <Button b_round={2} m_right={10}>
-                로그인
-              </Button>
+              {!isLogin ? (
+                <>
+                  <Button b_round={2}>회원가입</Button>
+                  <Button b_round={2} m_right={10}>
+                    로그인
+                  </Button>
+                </>
+              ) : (
+                <div>님 환영합니다</div>
+              )}
             </div>
             <div className="flex justify-between pt-1">
               <div>

@@ -10,7 +10,7 @@ export const usePokeInfoInfinity = () => {
     ({ pageParam = 0 }) => PokeApi.getPokeInfo(pageParam),
     {
       ...queryConfig,
-      getNextPageParam: (lastPage, AllPage) => {
+      getNextPageParam: (lastPage) => {
         console.log('Data Loading...');
         if (!lastPage.isLast) return parseInt(lastPage.config.params.offset) + 35;
         return undefined;
