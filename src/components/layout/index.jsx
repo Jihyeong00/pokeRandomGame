@@ -3,7 +3,7 @@ import Footer from '../footer';
 import Header from '../header';
 import { Outlet } from 'react-router-dom';
 import { styled } from 'styled-components';
-import Loading from '../Loading/Loading';
+// import Loading from '../Loading/Loading';
 
 const LayOut = () => {
   return (
