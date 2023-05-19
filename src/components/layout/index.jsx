@@ -8,8 +8,8 @@ import { styled } from 'styled-components';
 const LayOut = () => {
   return (
     <React.Fragment>
-      <Header />
       <Background />
+      <Header />
       {/* <Loading /> */}
       <Container>
         <Outlet />

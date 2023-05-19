@@ -7,7 +7,6 @@ const Header = () => {
   const navigate = useNavigate();
   const moveDocument = () => {
     navigate('/document');
-    console.log('버튼눌림');
   };
   const onSubmit = (e) => {
     e.preventDefault();
@@ -52,10 +51,20 @@ const Header = () => {
             </div>
             <div className="flex justify-between pt-1">
               <div>
-                <Button b_round={2} m_right={10} className="bg-slate-400 " onClick={moveDocument}>
+                <Button
+                  b_round={2}
+                  m_right={10}
+                  className="bg-slate-400 "
+                  onClick={() => navigate('/board')}
+                >
                   자유게시판
                 </Button>
-                <Button b_round={2} m_right={10} className="bg-slate-400 " onClick={moveDocument}>
+                <Button
+                  b_round={2}
+                  m_right={10}
+                  className="bg-slate-400 "
+                  onClick={() => navigate('/document')}
+                >
                   도감
                 </Button>
                 <Button b_round={2} className="bg-slate-400 ">

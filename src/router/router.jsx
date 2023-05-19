@@ -6,6 +6,7 @@ import ErrorPage from '../page/Error/ErrorPage';
 import SignPage from '../page/User';
 import SignIn from '../page/User/SignIn/SignIn';
 import SignUp from '../page/User/SignUp/SignUp';
+import Board from '../page/Board';
 
 /**
  * 목표 1
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
       {
         path: '/sign',
         element: <SignPage />,
+      },
+      {
+        path: '/board',
+        element: <Board />,
       },
     ],
     errorElement: <ErrorPage />,

@@ -4,6 +4,7 @@ import { RouterProvider } from 'react-router-dom';
 import router from './router/router';
 import { ThemeProvider } from 'styled-components';
 import theme from './style/theme';
+import { RecoilRoot } from 'recoil';
 
 const queryClient = new QueryClient({
   refetchOnMount: false,
@@ -11,11 +12,13 @@ const queryClient = new QueryClient({
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
-      </QueryClientProvider>
-    </ThemeProvider>
+    <RecoilRoot>
+      <ThemeProvider theme={theme}>
+        <QueryClientProvider client={queryClient}>
+          <RouterProvider router={router} />
+        </QueryClientProvider>
+      </ThemeProvider>
+    </RecoilRoot>
   );
 }
 

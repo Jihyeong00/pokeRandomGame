@@ -40,21 +40,33 @@ export default function SignUp() {
 
   return (
     <>
+      <ToastContainer />
       <LoginForm onSubmit={handleSubmit(submitData)} action="">
-        <LabelForm htmlFor="">
+        <LabelForm htmlFor="email">
           <LoginInput
+            id="email"
             type="text"
             {...register('email')}
             placeholder="PokeId (아이디 또는 이메일)"
           />
         </LabelForm>
         {errors.email && <ErrorMsg>{errors.email.message}</ErrorMsg>}
-        <LabelForm htmlFor="">
-          <LoginInput type="password" {...register('password')} placeholder="비밀번호" />
+        <LabelForm htmlFor="password">
+          <LoginInput
+            id="password"
+            type="password"
+            {...register('password')}
+            placeholder="비밀번호"
+          />
         </LabelForm>
         {errors.password && <ErrorMsg>{errors.password.message}</ErrorMsg>}
-        <LabelForm htmlFor="">
-          <LoginInput type="password" {...register('confirmPassword')} placeholder="비밀번호확인" />
+        <LabelForm htmlFor="confirmPassword">
+          <LoginInput
+            id="confirmPassword"
+            type="password"
+            {...register('confirmPassword')}
+            placeholder="비밀번호확인"
+          />
         </LabelForm>
         {errors.confirmPassword && <ErrorMsg>{errors.confirmPassword.message}</ErrorMsg>}
         <SubmitBtn>회원가입</SubmitBtn>
