@@ -36,13 +36,13 @@ const NameBox = styled.div`
 `;
 const ContentBox = styled.div`
   bottom: 0;
-  height: 100px;
-  padding: 10px;
-  overflow: hidden;
-  display: -webkit-box;
+  height: auto;
+  padding: 10px 10px 0 10px;
+  display: -webkit-inline-box;
   font-size: 14px;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
+  overflow: hidden;
 `;
 const NameCard = styled.div`
   height: 70px;
