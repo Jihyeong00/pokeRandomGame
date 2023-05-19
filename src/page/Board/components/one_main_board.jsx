@@ -1,14 +1,17 @@
 import { styled } from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const OneMainBoard = ({ data }) => {
-  console.log(data);
+  const { boardNumber, title, name, content } = { ...data };
   return (
     <S.Onelist>
-      <S.Number>{data.boardNumber}</S.Number>
-      <S.NameCard></S.NameCard>
-      <S.TitleBox>{data.title}</S.TitleBox>
-      <S.NameBox>{data.name}</S.NameBox>
-      <S.ContentBox>{data.content}</S.ContentBox>
+      <Link to={`/board/detail?boardNumber=${boardNumber}`}>
+        <S.Number>{boardNumber}</S.Number>
+        <S.NameCard />
+        <S.TitleBox>{title}</S.TitleBox>
+        <S.NameBox>{name}</S.NameBox>
+        <S.ContentBox>{content}</S.ContentBox>
+      </Link>
     </S.Onelist>
   );
 };

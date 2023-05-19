@@ -1,8 +1,9 @@
 import { atom, selector } from 'recoil';
+import data from '../model/dummyData';
 
 export const PokeListAtom = atom({
   key: 'PokeListAtom',
-  default: [],
+  default: [...data],
 });
 
 export const TotalListLength = selector({

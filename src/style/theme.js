@@ -6,6 +6,7 @@ const pokeColors = {
   ooh2: '#EB0000',
   blue: '#448AFF',
   white: '#FFF',
+  labelGray: '#e5e8eb',
 };
 
 const typeColors = {

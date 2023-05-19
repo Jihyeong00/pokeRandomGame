@@ -10,7 +10,6 @@ const Board = () => {
   const [pokeItems, setPokeItems] = useRecoilState(PokeListAtom);
   // const state = useRecoilState('값') 값만 사용하는 경우
   // const setState = useSetRecoilState('값') 수정만 필요한 경우
-  setPokeItems(data);
 
   // 파생 데이터인 셀렉터를 이용해보세요
   // const TotalQuanTity 총 리스트의 길이
@@ -30,8 +29,11 @@ const Board = () => {
     <S.Wrapper>
       <S.Container>
         <S.ContainerHeader>
-          <S.CreateBtn onClick={changeCreateForm}>게시글 작성</S.CreateBtn>
-          <S.CreateBtn onClick={changeWatchForm}>게시글 보기</S.CreateBtn>
+          {!isCreateMode ? (
+            <S.CreateBtn onClick={changeCreateForm}>게시글 작성</S.CreateBtn>
+          ) : (
+            <S.CreateBtn onClick={changeWatchForm}>게시글 보기</S.CreateBtn>
+          )}
         </S.ContainerHeader>
         <S.ContainerBody>
           {!isCreateMode ? (
