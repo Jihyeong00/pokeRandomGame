@@ -5,9 +5,6 @@ import { useState } from 'react';
 
 const Header = () => {
   const navigate = useNavigate();
-  const moveDocument = () => {
-    navigate('/document');
-  };
   const onSubmit = (e) => {
     e.preventDefault();
     navigate(`/keyword/?keyword=${e.target.text.value}`);

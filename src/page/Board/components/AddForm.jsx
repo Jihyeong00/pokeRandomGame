@@ -55,7 +55,7 @@ const AddForm = ({ onClick }) => {
         </S.FormTitle>
         {errors.title && <span>{errors.title.message}</span>}
         <S.FormTitle htmlFor="content">
-          <S.inputTitle
+          <S.inputContent
             type="text"
             name=""
             id="content"
@@ -85,6 +85,12 @@ const FormTitle = styled.label`
 
 const inputTitle = styled.input`
   outline: none;
+  width: 100%;
+`;
+const inputContent = styled.textarea`
+  outline: none;
+  width: 100%;
+  height: 300px;
 `;
 
 const FormButton = styled.button`
@@ -99,4 +105,5 @@ const S = {
   FormTitle,
   FormButton,
   inputTitle,
+  inputContent,
 };

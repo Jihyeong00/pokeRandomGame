@@ -27,6 +27,8 @@ const Onelist = styled.li`
 const TitleBox = styled.div`
   text-align: center;
   top: 0;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 `;
 const NameBox = styled.div`
   text-align: right;
@@ -36,10 +38,11 @@ const ContentBox = styled.div`
   bottom: 0;
   height: 100px;
   padding: 10px;
-  text-overflow: ellipsis;
   overflow: hidden;
   display: -webkit-box;
   font-size: 14px;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 `;
 const NameCard = styled.div`
   height: 70px;
