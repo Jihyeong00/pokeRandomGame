@@ -2,6 +2,8 @@ import { useSearchParams } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { useKeyWordMorePokeInfo, usePokeInfoToKeyWord } from '../../hooks/queries/getPokeQuery';
 import { MdArrowBackIosNew, MdArrowForwardIos } from 'react-icons/md';
+import { RightMove, leftMove, move } from '../../style/keyprame';
+import { useState } from 'react';
 
 const SearchPoke = () => {
   window.scrollTo(0, 0);
@@ -9,7 +11,8 @@ const SearchPoke = () => {
   const keyword = searchParams.get('keyword');
   const res1 = useKeyWordMorePokeInfo(keyword);
   const res2 = usePokeInfoToKeyWord(keyword);
-
+  const [forward, setForward] = useState(0);
+  const [rendering, setRendering] = useState(false);
   if (res1.isLoading || res2.isLoading) return <div>로딩중</div>;
   if (res1.isError || res2.isError) return <div>에러페이지</div>;
   if (res2.isSuccess) {
@@ -17,8 +20,6 @@ const SearchPoke = () => {
     // 한글
     const data2 = res2.data.data;
     // 이미지
-    console.log(data1);
-    console.log(data2);
     const korName = data1.names.filter((data) => data.language.name === 'ko')[0].name;
     const { back_default, back_shiny, front_default, front_shiny } = data2.sprites;
 
@@ -27,22 +28,29 @@ const SearchPoke = () => {
 
     const prevNumber = indexNumber === 1 ? 1 : indexNumber - 1;
     const nextNumber = indexNumber + 1;
+    console.log(forward);
     return (
-      <S.Container>
+      <S.Container forward={forward}>
         <S.Wrapper>
           <S.Item>
             <MdArrowBackIosNew
               size={50}
               style={{ position: 'absolute', top: '230px', cursor: 'pointer' }}
               onClick={() => {
+                setRendering((re) => !re);
                 setSearchParmas({ keyword: prevNumber });
+                setForward('left');
               }}
             />
             <MdArrowForwardIos
               size={50}
               style={{ position: 'absolute', top: '230px', right: '0', cursor: 'pointer' }}
               onClick={() => {
+                setRendering((re) => !re);
                 setSearchParmas({ keyword: nextNumber });
+                setForward(() => {
+                  return 'right';
+                });
               }}
             />
             <S.Itembox>
@@ -116,6 +124,8 @@ const Container = styled.div`
   width: 1040px;
   padding: 20px;
   margin: 0 auto;
+  animation: ${({ forward }) => (forward === 0 ? move : forward === 'left' ? leftMove : RightMove)}
+    1.5s alternate;
 `;
 
 const Wrapper = styled.div`
