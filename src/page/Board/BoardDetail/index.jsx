@@ -20,17 +20,23 @@ const BoardDetail = () => {
 
       if (selectListIndex !== -1) {
         const selectList = copyList[selectListIndex];
-
         const newComments = {
-          commentNumber: selectList.comments.length + 1,
+          commentNumber: selectList.comments === undefined ? 0 : selectList.comments.length + 1,
           name: '이지형',
           comment: inputState,
         };
-
-        const updatedList = {
-          ...selectList,
-          comments: [...selectList.comments, newComments],
-        };
+        let updatedList = '';
+        if (selectList.comments !== undefined) {
+          updatedList = {
+            ...selectList,
+            comments: [...selectList.comments, newComments],
+          };
+        } else {
+          updatedList = {
+            ...selectList,
+            comments: [newComments],
+          };
+        }
 
         copyList[selectListIndex] = updatedList;
       }
@@ -49,12 +55,13 @@ const BoardDetail = () => {
         <S.CommentTitle>댓글</S.CommentTitle>
         <S.ListComments>
           <ul>
-            {selectList[0].comments.map((comment) => (
-              <S.CommentliList dataRole={comment.commentNumber}>
-                <S.CommentName>{comment.name}</S.CommentName>
-                <S.CommentContent>{comment.comment}</S.CommentContent>
-              </S.CommentliList>
-            ))}
+            {selectList[0].comments !== undefined &&
+              selectList[0].comments.map((comment) => (
+                <S.CommentliList dataRole={comment.commentNumber}>
+                  <S.CommentName>{comment.name}</S.CommentName>
+                  <S.CommentContent>{comment.comment}</S.CommentContent>
+                </S.CommentliList>
+              ))}
           </ul>
           <S.CreateCommentForm onSubmit={onSubmit}>
             <S.CreateCommentLabel htmlFor="content">
